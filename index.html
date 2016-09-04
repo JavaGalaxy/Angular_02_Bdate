@@ -17,7 +17,7 @@
 
 	</head>
 
-  <body ng-app="bdayToDo">
+  <body ng-app="bdayToDo" ng-controller="MainController">
   		<div id="wrap">
 
       <!-- Begin page content -->
@@ -30,22 +30,22 @@
 			<li>
 				<span ng-hide="editing" ng-click="editing = true">{{bday.name}} | {{bday.date}} </span>
 
-				<form>
+				<form ng-show="editing" ng-submit="editing = false">
 					<label>Name:</label>
 					<input type="text" ng-model="bday.name" placeholder="Name" ng-required/>
 
 					<label>Date:</label>
-					<input type="text" ng-model="bday.date" placeholder="Date"
+					<input type="date" ng-model="bday.date" placeholder="Date"
 					ng-required/>
 
 					<button class="btn" type="submit">Save</button>
-					<button class="btn" type="button" ng-click=remove(bday)></button>
+					<button class="btn" type="button" ng-click=remove(bday)>Delete</button>
 				</form>
 			</li>
 		</ul>          
 
           <!-- Static page -->
-          <form ng-show="visible" ng-submit="newBirthday()">
+          <form ng-show="visible" ng-submit="addNewBday()">
             <label>Name:</label>
             <input type="text" ng-model="bdayname" placeholder="Name" ng-required/>
             

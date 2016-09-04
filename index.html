@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>B'Day App</title>
+		<script src="..\js\angular.js"></script>
+
+		<script src="app.js"></script>
+
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+		<!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.0/css/bootstrap-combined.min.css"
+    		rel="stylesheet"> -->
+
+
+
+	</head>
+
+  <body ng-app="bdayToDo">
+  		<div id="wrap">
+
+      <!-- Begin page content -->
+      <div class="container">
+        <div class="page-header">
+          <h1>Birthday Reminders</h1>
+        </div>
+		
+		<ul ng-repeat="bday in bdays">
+			<li>
+				<span ng-hide="editing" ng-click="editing = true">{{bday.name}} | {{bday.date}} </span>
+
+				<form>
+					<label>Name:</label>
+					<input type="text" ng-model="bday.name" placeholder="Name" ng-required/>
+
+					<label>Date:</label>
+					<input type="text" ng-model="bday.date" placeholder="Date"
+					ng-required/>
+
+					<button class="btn" type="submit">Save</button>
+					<button class="btn" type="button" ng-click=remove(bday)></button>
+				</form>
+			</li>
+		</ul>          
+
+          <!-- Static page -->
+          <form ng-show="visible" ng-submit="newBirthday()">
+            <label>Name:</label>
+            <input type="text" ng-model="bdayname" placeholder="Name" ng-required/>
+            
+            <label>Date:</label>
+            <input type="date" ng-model="bdaydate" placeholder="Date" ng-required/>
+            <br/> 
+            <button class="btn" type="submit">Save</button>
+          </form>
+      </div>
+
+      <div id="push"></div> 
+    </div>
+
+	    <div id="footer">
+	      <div class="container">
+	        <a class="btn" ng-click="visible = true"><i class="icon-plus"></i>Add</a>
+	      </div>
+	    </div>
+
+    </body>
+
+</html>
+
